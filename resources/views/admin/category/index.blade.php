@@ -28,7 +28,7 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Details</th>
+                <th>Edit</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -40,7 +40,7 @@
                 <td><img src="{{ Storage::url($category->image) }}" width="100%"></td>
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->description }}</td>
-                <td><button class="btn btn-primary">Details</button></td>
+                <td><a href="{{ route('category.edit', [$category->id]) }}"><button class="btn btn-primary">Edit</button></a></td>
                 <td>
                   <form action="{{ route('category.destroy', [$category->id]) }}" method="POST" onsubmit="return confirmDelete()">
                       @csrf
