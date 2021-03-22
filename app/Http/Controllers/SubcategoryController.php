@@ -45,7 +45,7 @@ class SubcategoryController extends Controller
             'category_id' => $request->category
         ]);
         notify()->success('You have created a Subcategory successfully');
-        return redirect()->back();
+        return redirect()->route('subcategory.index');
     }
 
     /**
@@ -67,7 +67,8 @@ class SubcategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+        return view ('admin.subcategory.edit', compact('subcategory'));
     }
 
     /**
@@ -79,7 +80,16 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required | min:3',
+            'category' => 'required'
+        ]);
+        $subcategory = Subcategory::find($id);
+        $subcategory->name = $request->name;
+        $subcategory->category_id = $request->category;
+        $subcategory->save();
+        notify()->success('You have updated a Subcategory successfully');
+        return redirect()->route('subcategory.index');
     }
 
     /**
