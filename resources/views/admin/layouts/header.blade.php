@@ -14,4 +14,15 @@
   <link href="{{asset('admin/css/ruang-admin.min.css')}}" rel="stylesheet">
 </head>
 
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<style>
+    .inset-0 {
+        z-index: 999 !important;
+    }
+</style>
+
 <body id="page-top">
+
+    @notifyCss
+    @include('notify::messages')
+    @notifyJs

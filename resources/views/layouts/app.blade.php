@@ -18,6 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .inset-0 {
+            z-index: 999 !important;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
