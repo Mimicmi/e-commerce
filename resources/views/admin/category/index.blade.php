@@ -28,7 +28,8 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Action</th>
+                <th>Details</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -39,7 +40,14 @@
                 <td><img src="{{ Storage::url($category->image) }}" width="100%"></td>
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->description }}</td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <td><button class="btn btn-primary">Details</button></td>
+                <td>
+                  <form action="{{ route('category.destroy', [$category->id]) }}" method="POST" onsubmit="return confirmDelete()">
+                      @csrf
+                      {{ method_field('DELETE') }}
+                      <button class="btn btn-danger" type="submit">Delete</button>
+                  </form>
+                </td>
               </tr>
                   @endforeach
               @else

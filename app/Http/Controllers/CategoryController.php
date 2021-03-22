@@ -95,6 +95,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $filename = $category->image;
+        $category->delete();
+
+        \Storage::delete($filename);
+        notify()->success('You have deleted a Category successfully');
+        return redirect()->route('category.index');
     }
 }
