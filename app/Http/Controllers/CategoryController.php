@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -38,8 +39,16 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => 'required | unique:categories',
             'description' => 'required',
-            'image' => 'required | mimes: jpg, jpeg, png'
+            'image' => 'required | mimes:jpg,jpeg,png'
         ]);
+        $image = $request->file('image')->store('public/files');
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'description' => $request->description,
+            'image' => $image
+        ]);
+        return redirect()->back()->with('message', 'You have created a Category successfully');
     }
 
     /**
