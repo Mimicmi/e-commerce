@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\SubcategoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +17,7 @@ Route::get('/index/test', function() {
 });
 
 Route::resource('category', CategoryController::class);
+Route::resource('subcategory', SubcategoryController::class);
 
 Auth::routes();
 
