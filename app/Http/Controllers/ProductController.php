@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Subcategory;
 
 
@@ -93,7 +94,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $product = Product::find($id);
+        $filename = $product->image;
+        if($request->file('image')){
+            $image = $request->file('image')->store('public/product');
+            \Storage::delete($filename);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->image = $image;
+        $product->price=$request->price;
+        $product->additional_info = $request->additional_info;
+        $product->category_id = $request->category;
+        $product->subcategory_id = $request->subcategory;
+        $product->save();
+       }else{
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price=$request->price;
+        $product->additional_info = $request->additional_info;
+        $product->category_id = $request->category;
+        $product->subcategory_id = $request->subcategory;
+
+
+        $product->save();
+    }
+        notify()->success('Product updated successfully!');
+        return redirect()->route('product.index');
     }
 
     /**

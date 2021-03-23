@@ -27,7 +27,8 @@ img {
       @endif
 
       <div class="col-lg-10">
-        <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">@csrf
+        <form action="{{route('product.update', [$product->id])}}" method="POST" enctype="multipart/form-data">@csrf
+          {{ method_field('PUT') }}
               <div class="card mb-6">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Edit a Product</h6>
@@ -45,7 +46,7 @@ img {
                     </div>
                     <div class="form-group"> 
                       <label for="">Price</label>
-                      <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="" aria-describedby=""
+                      <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="" aria-describedby=""
                         value="{{ $product->price }}">
                         @error('price')
                         <span class="invalid-feedback" role="alert">
@@ -82,7 +83,7 @@ img {
                         <select name="category" class="form-control @error('category') is-invalid @enderror">
                           <option value="">Select a category</option>
                           @foreach (App\Models\Category::all() as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" @if($category->id == $product->category_id) selected @endif>{{ $category->name }}</option>
                           @endforeach
                         </select>
                         @error('category')
@@ -98,6 +99,9 @@ img {
 
                         <select name="subcategory" class="form-control @error('subcategory') is-invalid @enderror">
                           <option value="">Select a subcategory</option>
+                          @foreach (App\Models\Subcategory::all() as $subcategory)
+                          <option value="{{ $subcategory->id }}" @if($subcategory->id == $product->subcategory_id) selected @endif>{{ $subcategory->name }}</option>
+                          @endforeach
                           
                         </select>
                       </div>   
