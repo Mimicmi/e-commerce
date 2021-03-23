@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Subcategory;
+
 
 class ProductController extends Controller
 {
@@ -87,5 +89,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function loadSubCategories(Request $request, $id){
+        $subcategory = Subcategory::where('category_id', $id)->pluck('name', 'id');
+        return response()->json($subcategory);
     }
 }
