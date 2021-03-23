@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProductController;
+Use App\Http\Controllers\FrontProductListController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,9 +14,9 @@ Route::get('/index/test', function() {
     return view('test');
 });
 
-Route::get('/subcategories/{id}', 
-[ProductController::class, 'loadSubCategories']
-);
+Route::get('/subcategories/{id}', [ProductController::class, 'loadSubCategories']);
+
+Route::get('/', [FrontProductListController::class, 'index']);
 
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],function(){
