@@ -59,7 +59,7 @@ class ProductController extends Controller
             'subcategory_id' => $request->subcategory
         ]);
         notify()->success('Your product has been successfully created');
-        return redirect()->back();
+        return redirect()->route('product.index');
     }
 
     /**
@@ -131,7 +131,13 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $filename = $product->image;
+        $product->delete();
+
+        \Storage::delete($filename);
+        notify()->success('You have deleted a Product successfully');
+        return redirect()->route('product.index');
     }
 
     public function loadSubCategories(Request $request, $id){

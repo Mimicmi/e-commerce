@@ -39,6 +39,10 @@ function confirmDelete() {
 function confirmDeleteSub() {
   return confirm ('Are you sure you want to delete this subcategory ?')
 }
+
+function confirmDeleteProd() {
+  return confirm ('Are you sure you want to delete this product ?')
+}
 </script>
 <script>
     $(document).ready(function () {
