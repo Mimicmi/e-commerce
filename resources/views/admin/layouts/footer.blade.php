@@ -14,6 +14,8 @@
 <script src="{{asset('admin/js/ruang-admin.min.js')}}"></script>
 <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
 <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script>  
+<script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 <script type="text/javascript">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -38,3 +40,9 @@ function confirmDeleteSub() {
   return confirm ('Are you sure you want to delete this subcategory ?')
 }
 </script>
+<script>
+    $(document).ready(function () {
+      $('#dataTable').DataTable(); 
+      $('#dataTableHover').DataTable();
+    });
+  </script>
