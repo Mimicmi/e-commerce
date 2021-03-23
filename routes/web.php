@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,7 +19,7 @@ Route::get('/index/test', function() {
 
 Route::resource('category', CategoryController::class);
 Route::resource('subcategory', SubcategoryController::class);
-
+Route::resource('product', ProductController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
