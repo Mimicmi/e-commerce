@@ -5,7 +5,7 @@
 <style>
 img {
   display: block;
-  width: 15%;
+  width: 100px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 5px;
