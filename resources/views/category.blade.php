@@ -8,12 +8,16 @@
 
       <div class="row">
         <div class="col-md-2">
-             <form action="#" method="GET">
+             <form action="{{ route('product.list', [$slug]) }}" method="GET">
             <!--foreach subcategories-->
             @foreach ($subcategories as $subcategory)
                 
-              <p><input type="checkbox" name="subcategory[]" value="{{ $subcategory->id }}">{{ $subcategory->name }}</p>
-              
+              <p>
+                <input type="checkbox" name="subcategory[]" value="{{ $subcategory->id }}" 
+                  @if (isset($filterSubCategories)) {{ in_array($subcategory->id, $filterSubCategories) ? 'checked = "checked" ': '' }} @endif>
+                {{ $subcategory->name }}
+              </p>
+
             @endforeach
 
            <!--end foreach-->
