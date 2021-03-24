@@ -17,10 +17,10 @@
         </div>
       </div>
     </section> --}}
-
+    <h2>Latest release</h2>
     <div class="jumbotron">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" style="width:100%; height:150px !important;">
+        <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row">
               @foreach ($randomActiveProducts as $product)
@@ -35,7 +35,7 @@
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <a href="product/{{ $product->id }}">
+                        <a href="{{ route('product.view', [$product->id]) }}">
                           <button type="button" class="btn btn-sm btn-outline-success">Details</button>
                         </a>
                         <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
@@ -61,8 +61,8 @@
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <a href="product/{{ $product->id }}">
-                          <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                        <a href="{{ route('product.view', [$product->id]) }}">
+                          <button type="button" class="btn btn-sm btn-outline-success">Details</button>
                         </a>
                         <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                       </div>
@@ -89,7 +89,9 @@
 
     <h2>Category</h2>
     @foreach (App\Models\Category::all() as $cat)
-      <button class="btn btn-secondary">{{ $cat->name }}</button>        
+      <a href="{{ route('product.list', [$cat->slug]) }}">
+        <button class="btn btn-secondary">{{ $cat->name }}</button>        
+      </a>  
     @endforeach
   
     <div class="album py-5 bg-light">
@@ -109,8 +111,8 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="product/{{ $product->id }}">
-                      <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                    <a href="{{ route('product.view', [$product->id]) }}">
+                      <button type="button" class="btn btn-sm btn-outline-success">Details</button>
                     </a>
                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                   </div>

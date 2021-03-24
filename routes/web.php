@@ -18,6 +18,7 @@ Route::get('/subcategories/{id}', [ProductController::class, 'loadSubCategories'
 
 Route::get('/', [FrontProductListController::class, 'index']);
 Route::get('/product/{id}', [FrontProductListController::class, 'show'])->name('product.view');
+Route::get('/category/{name}', [FrontProductListController::class, 'allProduct'])->name('product.list');
 
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],function(){
