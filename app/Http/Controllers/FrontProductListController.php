@@ -47,7 +47,8 @@ class FrontProductListController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('show', compact('product'));
     }
 
     /**
