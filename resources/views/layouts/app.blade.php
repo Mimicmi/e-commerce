@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @notifyCss
+    @include('notify::messages')
+    @notifyJs
+
     <style>
         .inset-0 {
             z-index: 999 !important;
@@ -44,8 +48,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                            <a href="#" class="nav-link">
-                                <span class="fas fa-shopping-cart"> (0)</span>
+                            <a href="{{ route('show.cart') }}" class="nav-link">
+                                <span class="fas fa-shopping-cart">
+                                    ({{ session()->has('cart')?session()->get('cart')->totalQty:'0' }})
+                                </span>
                             </a>
                         @guest
                             @if (Route::has('login'))

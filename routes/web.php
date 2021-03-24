@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProductController;
 Use App\Http\Controllers\FrontProductListController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,7 +20,8 @@ Route::get('/subcategories/{id}', [ProductController::class, 'loadSubCategories'
 Route::get('/', [FrontProductListController::class, 'index']);
 Route::get('/product/{id}', [FrontProductListController::class, 'show'])->name('product.view');
 Route::get('/category/{name}', [FrontProductListController::class, 'allProduct'])->name('product.list');
-
+Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add.cart');
+Route::get('/cart', [CartController::class, 'showCart'])->name('show.cart');
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],function(){
         Route::get('/dashboard', function() {
