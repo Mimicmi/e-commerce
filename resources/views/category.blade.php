@@ -33,7 +33,7 @@
         <input type="submit" value="Filter" class="btn btn-success">
       </form>
       <hr>
-      <input type="submit" href="{{ route('product.list', [$slug]) }}" value="Reset Filters" class="btn btn-primary">
+      <a href="{{ route('product.list', [$slug]) }}"><input type="submit" value="Reset Filters" class="btn btn-primary"></a>
     </div>
     <div class="col-md-10">
       <div class="row">
