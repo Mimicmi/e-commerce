@@ -44,6 +44,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                            <a href="#" class="nav-link">
+                                <span class="fas fa-shopping-cart"> (0)</span>
+                            </a>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
