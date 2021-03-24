@@ -5,7 +5,7 @@
 <div class="container">
   <main>
 
-    <section class="py-5 text-center container">
+    {{-- <section class="py-5 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="fw-light">Album example</h1>
@@ -16,57 +16,63 @@
           </p>
         </div>
       </div>
-    </section>
+    </section> --}}
 
     <div class="jumbotron">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" style="width:100%; height:150px !important;">
           <div class="carousel-item active">
             <div class="row">
-              <div class="col-3">
-                <img src="storage/files/4sV5lywVjXoPl6kmVIyjuDvFjm4G4Su0zSQSwc75.jpg" class="img-thumbnail" alt="...">
+              @foreach ($randomActiveProducts as $product)
+                  
+              <div class="col-4">
+                <div class="card shadow-sm">
+                  <img src="{{ Storage::url($product->image) }}" style="width: 100%; height:300px; object-fit: cover;">  
+                  <div class="card-body">
+                    <p><b>{{ $product->name }}</b></p>
+                    <p class="card-text">
+                      {!! Str::limit($product->description, 120) !!}
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="product/{{ $product->id }}">
+                          <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                        </a>
+                        <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                      </div>
+                      <small class="text-muted">{{ $product->price }}€</small>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-3">
-                <img src="storage/files/4sV5lywVjXoPl6kmVIyjuDvFjm4G4Su0zSQSwc75.jpg" class="img-thumbnail" alt="...">
-              </div>
-              <div class="col-3">
-                <img src="storage/files/4sV5lywVjXoPl6kmVIyjuDvFjm4G4Su0zSQSwc75.jpg" class="img-thumbnail" alt="...">
-              </div>
-              <div class="col-3">
-                <img src="storage/files/4sV5lywVjXoPl6kmVIyjuDvFjm4G4Su0zSQSwc75.jpg" class="img-thumbnail" alt="...">
-              </div>
+              @endforeach
             </div>
           </div>
           <div class="carousel-item">
             <div class="row">
-              <div class="col-3">
-                <img src="storage/files/INq7Cr0S2ZUYuYAiBuXgeaW1t0HRzED9rXh6WZhP.jpg" class="img-thumbnail" alt="...">
+              @foreach ($randomItemProducts as $product)
+              <div class="col-4">
+                <div class="card shadow-sm">
+                  <img src="{{ Storage::url($product->image) }}" style="width: 100%; height:300px; object-fit: cover;">  
+                  <div class="card-body">
+                    <p><b>{{ $product->name }}</b></p>
+                    <p class="card-text">
+                      {!! Str::limit($product->description, 120) !!}
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="product/{{ $product->id }}">
+                          <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                        </a>
+                        <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                      </div>
+                      <small class="text-muted">{{ $product->price }}€</small>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-3">
-                <img src="storage/files/INq7Cr0S2ZUYuYAiBuXgeaW1t0HRzED9rXh6WZhP.jpg" class="img-thumbnail" alt="...">
-              </div>
-              <div class="col-3">
-                <img src="storage/files/INq7Cr0S2ZUYuYAiBuXgeaW1t0HRzED9rXh6WZhP.jpg" class="img-thumbnail" alt="...">
-              </div>
-              <div class="col-3">
-                <img src="storage/files/INq7Cr0S2ZUYuYAiBuXgeaW1t0HRzED9rXh6WZhP.jpg" class="img-thumbnail" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-3">
-                <img src="storage/files/jm5qX8l50KdBWyOf98Nwod0JIjw3ESNsxwOwrvmv.jpg" class="img-thumbnail" alt="...">
-              </div>
-              <div class="col-3">
-                <img src="storage/files/jm5qX8l50KdBWyOf98Nwod0JIjw3ESNsxwOwrvmv.jpg" class="img-thumbnail" alt="...">
-              </div>
-              <div class="col-3">
-                <img src="storage/files/jm5qX8l50KdBWyOf98Nwod0JIjw3ESNsxwOwrvmv.jpg" class="img-thumbnail" alt="...">
-              </div>
-              <div class="col-3">
-                <img src="storage/files/jm5qX8l50KdBWyOf98Nwod0JIjw3ESNsxwOwrvmv.jpg" class="img-thumbnail" alt="...">
-              </div>
+
+              @endforeach
             </div>
           </div>
         </div>
@@ -95,7 +101,7 @@
               
           <div class="col">
             <div class="card shadow-sm">
-              <img src="{{ Storage::url($product->image) }}">  
+              <img src="{{ Storage::url($product->image) }}" style="width: 100%; height:300px; object-fit: cover;">  
               <div class="card-body">
                 <p><b>{{ $product->name }}</b></p>
                 <p class="card-text">
