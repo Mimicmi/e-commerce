@@ -108,11 +108,15 @@ class FrontProductListController extends Controller
         if($request->subcategory){
             $products = $this->filterProducts($request);
             $filterSubCategories = $this->getSubcategoriesId($request);
-            return view('category', compact('products', 'subcategories', 'slug', 'filterSubCategories'));
+            return view('category', compact('products', 'subcategories', 'slug', 'filterSubCategories', 'categoryId'));
+        } elseif($request->min || $request->max) {
+            $products = $this->filterPrice($request);
+            return view('category', compact('products', 'subcategories', 'slug', 'categoryId'));
+
         } else {
             $products = Product::where('category_id', $category->id)->get();
+            return view('category', compact('products', 'subcategories', 'slug', 'categoryId'));
         }        
-        return view('category', compact('products', 'subcategories', 'slug', 'categoryId'));
     }
 
     public function filterProducts(Request $request){
@@ -124,6 +128,7 @@ class FrontProductListController extends Controller
         $products = Product::whereIn('subcategory_id', $subId)->get();
         return $products;
     }
+
     public function getSubcategoriesId(Request $request){
         $subId = [];
         $subcategory = Subcategory::whereIn('id', $request->subcategory)->get();
@@ -133,4 +138,11 @@ class FrontProductListController extends Controller
         $products = Product::whereIn('subcategory_id', $subId)->get();
         return $subId;
     }
+
+    public function filterPrice(Request $request){
+        $categoryId = $request->categoryId;
+        $product = Product::whereBetween('price', [$request->min, $request->max])->where('category_id', $categoryId)->get();
+        return $product;
+    }
+
 }
