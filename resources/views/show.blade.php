@@ -39,5 +39,39 @@
       </aside>
     </div>
   </div>
+
+  @if (count($productFromSameCategories) > 0)
+      
+  <div class="jumbotron">
+    <h3>You may also be interested in</h3>
+    <div class="row">
+      @foreach ($productFromSameCategories as $product)
+          
+      <div class="col-4">
+        <div class="card shadow-sm">
+          <img src="{{ Storage::url($product->image) }}" style="width: 100%; height:300px; object-fit: cover;">  
+          <div class="card-body">
+            <p><b>{{ $product->name }}</b></p>
+            <p class="card-text">
+              {!! Str::limit($product->description, 120) !!}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="{{ route('product.view', [$product->id]) }}">
+                  <button type="button" class="btn btn-sm btn-outline-success">Details</button>
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+              </div>
+              <small class="text-muted">{{ $product->price }}€</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
+
+  @endif
+
 </div>
 @endsection
