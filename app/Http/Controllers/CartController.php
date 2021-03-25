@@ -123,4 +123,8 @@ class CartController extends Controller
         notify()->success('You have added a Product successfully');
         return redirect()->back();
     }
+
+    public function checkout($amount){
+        return view('checkout', compact('amount'));
+    }
 }

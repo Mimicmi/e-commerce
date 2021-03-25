@@ -53,7 +53,9 @@
   <div class="card-footer">
     <button class="btn btn-warning">Continue Shopping</button>
     <span style="margin-left:300px;">Total Price: {{ $cart->totalPrice }}€</span>
-    <button class="btn btn-info float-right">Checkout</button>
+    <a href="{{ route('checkout.cart', $cart->totalPrice) }}">
+      <button class="btn btn-info float-right">Checkout</button>
+    </a>
   </div>			
 
   @else

@@ -20,10 +20,13 @@ Route::get('/subcategories/{id}', [ProductController::class, 'loadSubCategories'
 Route::get('/', [FrontProductListController::class, 'index']);
 Route::get('/product/{id}', [FrontProductListController::class, 'show'])->name('product.view');
 Route::get('/category/{name}', [FrontProductListController::class, 'allProduct'])->name('product.list');
+
 Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add.cart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('show.cart');
 Route::post('/products/{product}', [CartController::class, 'update'])->name('update.cart');
 Route::post('/product/{product}', [CartController::class, 'destroy'])->name('destroy.cart');
+
+Route::get('/checkout/{amount}', [CartController::class, 'checkout'])->name('checkout.cart')->middleware('auth');
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],function(){
         Route::get('/dashboard', function() {
