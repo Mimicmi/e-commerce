@@ -38,7 +38,11 @@
             <button class="btn btn-secondary btn-sm"><i class="fas fa-sync"></i>Update</button>
           </form>
         </td>
-        <td><button class="btn btn-danger">Remove</button></td>
+          <td>
+            <form action="{{ route('destroy.cart', $product['id']) }}" method="POST">@csrf
+              <button class="btn btn-danger">Remove</button>
+            </form>
+          </td>
       </tr>
 
       @endforeach

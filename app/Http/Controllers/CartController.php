@@ -73,7 +73,7 @@ class CartController extends Controller
         $request->validate([
             'qty'=>'required | numeric | min:1'
         ]);
-        
+
         $cart = new Cart(session()->get('cart'));
         $cart->updateQty($product->id, $request->qty);
         session()->put('cart', $cart);
@@ -88,16 +88,25 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $cart = new Cart(session()->get('cart'));
+        $cart->remove($product->id);
+        if ($cart->totalQty <= 0) {
+            session()->forget('cart');
+            return redirect()->route('show.cart');
+        } else {
+            session()->put('cart', $cart);
+            notify()->success('You have updated the Cart successfully');
+            return redirect()->back();
+        }
     }
 
     public function showCart(){
         if (session()->has('cart')){
             $cart = new Cart(session()->get('cart'));
         } else {
-            $cart = new null;
+            $cart = null;
         }
         return view('cart', compact('cart'));
     }

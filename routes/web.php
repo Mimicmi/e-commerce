@@ -23,6 +23,7 @@ Route::get('/category/{name}', [FrontProductListController::class, 'allProduct']
 Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add.cart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('show.cart');
 Route::post('/products/{product}', [CartController::class, 'update'])->name('update.cart');
+Route::post('/product/{product}', [CartController::class, 'destroy'])->name('destroy.cart');
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],function(){
         Route::get('/dashboard', function() {
