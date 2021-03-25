@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'stripe' => [
+        'secret' => env('sk_test_51IYqg0GujHx0ulvBRFyd57A5fjHDs3lPs1gndSFRgBdxJDB2OvdT3ZhHQcNkGB9BVadlVXhzasMGTfcgfUgfuAVf00XHYfKzmQ'),
+    ],
+
 ];

@@ -27,6 +27,7 @@ Route::post('/products/{product}', [CartController::class, 'update'])->name('upd
 Route::post('/product/{product}', [CartController::class, 'destroy'])->name('destroy.cart');
 
 Route::get('/checkout/{amount}', [CartController::class, 'checkout'])->name('checkout.cart')->middleware('auth');
+Route::post('/charge', [CartController::class, 'charge'])->name('charge.cart');
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],function(){
         Route::get('/dashboard', function() {

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\User;
+use Stripe;
+
 
 class CartController extends Controller
 {
@@ -126,5 +130,26 @@ class CartController extends Controller
 
     public function checkout($amount){
         return view('checkout', compact('amount'));
+    }
+
+    public function charge(Request $request){
+        $charge = Stripe::charges()->create([
+            'currency' => 'EUR',
+            'source' => $request->stripeToken,
+            'amount' => $request->amount,
+            'description' => 'test'
+        ]);
+
+        $chargeId = $charge['id'];
+        if ($chargeId) {
+            auth()->user()->orders()->create([
+                'cart' => serialize(session()->get('cart'))
+            ]);
+            session()->forget('cart');
+            notify()->success('You have purchased successfully');
+            return redirect()->to('/');
+        } else {
+            return redirect()->back();
+        }
     }
 }

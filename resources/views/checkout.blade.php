@@ -37,7 +37,7 @@
     <div class="card">
       <div class="card-header">Checkout</div>
       <div class="card-body">
-        <form action="#" method="post" id="payment-form">@csrf
+        <form action="{{ route('charge.cart') }}" method="post" id="payment-form">@csrf
           <div class="form-group">
             <label>Name</label>
             <input type="text" name="name" id="name" class="form-control" required="">
