@@ -3,6 +3,13 @@
 @section('content')
 
 <div class="container">
+  @if ($errors->any())
+    @foreach ($errors->all() as $error)
+      <div class="alert alert-danger">
+        {{ $error }}  
+      </div>        
+    @endforeach      
+  @endif
   <table id="cart" class="table table-hover ">    
     <thead>
       <tr>
